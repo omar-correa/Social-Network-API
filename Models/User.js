@@ -1,7 +1,7 @@
 // Require schema and model from mongoose
-const mongoose = require("mongoose");
+const { Schema, model } = require("mongoose");
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
   // Configure individual properties using Schema Types
   username: {
     type: String,
@@ -29,10 +29,10 @@ const userSchema = new mongoose.Schema({
   ],
 });
 
-UserSchema.virtual("friendCount").get(function () {
+userSchema.virtual("friendCount").get(function () {
   return this.friends.length;
 });
 
-const User = mongoose.model("User", userSchema);
+const User = model("User", userSchema);
 
 module.exports = User;
