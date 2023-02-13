@@ -75,7 +75,7 @@ module.exports = {
   // Add a video response
   addFriend(req, res) {
     User.findOneAndUpdate(
-      { _id: req.params.userId },
+      { _id: req.params.friendId },
       { $addToSet: { friends: req.params.friendId } },
       { runValidators: true, new: true }
     )
@@ -89,8 +89,8 @@ module.exports = {
   // Remove video response
   deleteFriend(req, res) {
     User.findOneAndUpdate(
-      { _id: req.params.videoId },
-      { $pull: { reactions: { responseId: req.params.responseId } } },
+      { _id: req.params.userId },
+      { $pull: { friends: req.params.friendId } },
       { runValidators: true, new: true }
     )
       .then((user) =>
